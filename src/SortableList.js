@@ -517,7 +517,7 @@ export default class SortableList extends Component {
       activeRowKey: null,
       activeRowIndex: null,
       releasedRowKey: activeRowKey,
-      scrollEnabled: true,
+      scrollEnabled: this.props.scrollEnabled,
     }));
 
     if (this.props.onReleaseRow) {
@@ -538,7 +538,9 @@ export default class SortableList extends Component {
     this._movingDirectionChanged = prevMovingDirection !== this._movingDirection;
     this._setOrderOnMove();
 
-    this._scrollOnMove(e);
+    if (this.props.scrollEnabled) {
+      this._scrollOnMove(e);
+    }
   };
 
   _onScroll = ({nativeEvent: {contentOffset}}) => {
